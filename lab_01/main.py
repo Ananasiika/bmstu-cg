@@ -9,7 +9,10 @@ story = []
 c = Canvas(root, width=900, height=900, bg='white')
 text1 = Text(width=36, height=10, state=DISABLED)
 text2 = Text(width=36, height=10, state=DISABLED)
-x_max, y_max = 0, 0
+text = Text(width=25, height=10, state=DISABLED)
+num_1 = 1
+num_2 = 1
+edit = 0
 
 ent1 = Entry(width=8)
 ent2 = Entry(width=8)
@@ -19,6 +22,10 @@ ent3 = Entry(width=8)
 ent4 = Entry(width=8)
 ent3.place(x=460, y=177)
 ent4.place(x=560, y=177)
+ent5 = Entry(width=4)
+ent5.place(x=176, y=215)
+ent6 = Entry(width=4)
+ent6.place(x=600, y=215)
 TASK = 'Вариант 18:\nДаны два множества точек на плоскости. Выбрать три различные точки\
     первого множества так, чтобы круг, ограниченный окружностью, проходящей через\
     эти точки, содержал минимум 80% точек второго множества и имел минимальную площадь'
@@ -33,20 +40,27 @@ def disable():
     text1.configure(state=DISABLED)
     text2.configure(state=DISABLED)
 
-def add_dot(num):
+def add_dot(num): # добавление точки через ввод координат
+    global num_1, num_2
     if num == 1:
         d1 = ent1.get()
         d2 = ent2.get()
     else:
         d1 = ent3.get()
         d2 = ent4.get()
-
+    ent1.delete(0, END)
+    ent2.delete(0, END)
+    ent3.delete(0, END)
+    ent4.delete(0, END)
     try:
         d1 = float(d1)
         d2 = float(d2)
+        if abs(d1) >= 10000 or abs(d2) >= 10000:
+            box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
+            return
         enable()
         if num == 1:
-            text1.insert(END, f'({d1:g}; {d2:g})\n')
+            text1.insert(END, f'{num_1}: ({d1:g}; {d2:g})\n')
             story.append('')
             sett1 = text1.get(1.0, END).split('\n')[:-1]
             if not sett1[-1]:
@@ -54,8 +68,9 @@ def add_dot(num):
             end = len(sett1)
             story[-1] += f'text1.delete({end}.0, END)'
             story[-1] += '; text1.insert(END, "\\n")' if end > 1 else ''
+            num_1 += 1
         else:
-            text2.insert(END, f'({d1:g}; {d2:g})\n')
+            text2.insert(END, f'{num_2}: ({d1:g}; {d2:g})\n')
             story.append('')
             sett2 = text2.get(1.0, END).split('\n')[:-1]
             if not sett2[-1]:
@@ -63,21 +78,16 @@ def add_dot(num):
             end = len(sett2)
             story[-1] += f'text2.delete({end}.0, END)'
             story[-1] += '; text2.insert(END, "\\n")' if end > 1 else ''
+            num_2 += 1
         disable()
-        global x_max, y_max
-        if fabs(d1) > x_max:
-            x_max = d1
-        if fabs(d2) > y_max:
-            y_max = d2
-        scale(x_max, y_max)
         x, y = coord_true(d1, d2)
         print_dot(x, y, num)
+        scale()
     except:
-        box.showinfo('Error', 'Некорректные координаты!')
+        box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
 
 
-def back():
-    print(story)
+def back(): # Отмена действия
     enable()
     if not len(story):
         return
@@ -95,10 +105,25 @@ def back():
         eval(com)
 
     del story[-1]
+
+    global num_1, num_2
+    data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+    if not data[-1]:
+        data = data[:-1]
+    data = data[1::2]
+    num_1 = len(data) + 1
+    data = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+    if not data[-1]:
+        data = data[:-1]
+    data = data[1::2]
+    num_2 = len(data) + 1
+
     update_dots()
     disable()
+    scale()
 
-def is_cursor_touch_dot(dot, event):
+
+def is_cursor_touch_dot(dot, event): # Проверка кликнули ли по существующей точке
     coo = c.coords(dot)
     x, y = event.x, event.y
     if coo[0] <= x <= coo[0] + 4 and coo[1] <= y <= coo[1] + 4:
@@ -106,11 +131,11 @@ def is_cursor_touch_dot(dot, event):
     else:
         return 0
 
-def click(event):
-    global sz
+
+def click(event): # Добавление точки через клик по полю
+    global num_1, num_2
     x, y = (event.x - 365) * sz, (550 - event.y) * sz
     click_dot = 0
-    global x_max, y_max
     dotts = c.find_withtag('dot')
     for dot in dotts:
         if is_cursor_touch_dot(dot, event):
@@ -119,7 +144,7 @@ def click(event):
     if click_dot == 0:
         enable()
         if var.get() + 1 == 1:
-            text1.insert(END, f'({x:g}; {y:g})\n')
+            text1.insert(END, f'{num_1}: ({x:g}; {y:g})\n')
             story.append('')
             sett1 = text1.get(1.0, END).split('\n')[:-1]
             if not sett1[-1]:
@@ -127,8 +152,9 @@ def click(event):
             end = len(sett1)
             story[-1] += f'text1.delete({end}.0, END)'
             story[-1] += '; text1.insert(END, "\\n")' if end > 1 else ''
+            num_1 += 1
         else:
-            text2.insert(END, f'({x:g}; {y:g})\n')
+            text2.insert(END, f'{num_2}: ({x:g}; {y:g})\n')
             story.append('')
             sett2 = text2.get(1.0, END).split('\n')[:-1]
             if not sett2[-1]:
@@ -136,22 +162,19 @@ def click(event):
             end = len(sett2)
             story[-1] += f'text2.delete({end}.0, END)'
             story[-1] += '; text2.insert(END, "\\n")' if end > 1 else ''
+            num_2 += 1
         disable()
-        if abs(x) > x_max:
-            x_max = x
-        if abs(y) > y_max:
-            y_max = y
         print_dot(event.x, event.y, var.get() + 1)
-        scale(x_max, y_max)
     else:
         dotts = c.find_withtag('dot')
         for dot in dotts:
             if is_cursor_touch_dot(dot, event):
                 c.delete(dot)
 
-        data = text1.get(1.0, END).split('\n')[:-1]
+        data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
         if not data[-1]:
             data = data[:-1]
+        data = data[1::2]
         
         i = 0
         for dot in data:
@@ -159,20 +182,22 @@ def click(event):
             if abs(a - x) < 4 and abs(b - y) < 4:
                 break
             i += 1
-        if i <= len(data):
+        if i < len(data):
             enable()
             text1.delete(0.0, END)
             for j in range(i):
-                text1.insert(END, data[j] + '\n')
+                text1.insert(END, f'{j+1}: ' + data[j] + '\n')
             for j in range(i + 1, len(data)):
-                text1.insert(END, data[j] + '\n')
+                text1.insert(END, f'{j}: ' + data[j] + '\n')
             disable()
             story.append('')
-            story[-1] += '; text1.insert(END, "{}" + "\\n")'.format(data[i])
+            story[-1] += '; text1.insert(END, "{}: ""{}" + "\\n")'.format(num_1 - 1, data[i])
+            num_1 -= 1
 
-        data = text2.get(1.0, END).split('\n')[:-1]
+        data = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
         if not data[-1]:
             data = data[:-1]
+        data = data[1::2]
         
         i = 0
         for dot in data:
@@ -180,29 +205,35 @@ def click(event):
             if abs(a - x) < 4 and abs(b - y) < 4:
                 break
             i += 1
-        if i <= len(data):
+        if i < len(data):
             enable()
             text2.delete(0.0, END)
             for j in range(i):
-                text2.insert(END, data[j] + '\n')
+                text2.insert(END, f'{j+1}: ' + data[j] + '\n')
             for j in range(i + 1, len(data)):
-                text2.insert(END, data[j] + '\n')
+                text2.insert(END, f'{j}: ' + data[j] + '\n')
             disable()
+            story.append('')
+            story[-1] += '; text2.insert(END, "{}: ""{}" + "\\n")'.format(num_2 - 1, data[i])
+            num_2 -= 1
+    scale()
 
-def update_dots():
+def update_dots(): # Отрисовка всех точек заново
     clean_points()
-    data = text1.get(1.0, END).split('\n')[:-1]
+    data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
     if not data[-1]:
         data = data[:-1]
+    data = data[1::2]
 
     for dot in data:
         x, y = map(float, dot.strip('\n').strip(')').strip('(').split(';'))
         x, y = coord_true(x, y)
         print_dot(x, y, 1)
 
-    data = text2.get(1.0, END).split('\n')[:-1]
+    data = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
     if not data[-1]:
         data = data[:-1]
+    data = data[1::2]
 
     for dot in data:
         x, y = map(float, dot.strip('\n').strip(')').strip('(').split(';'))
@@ -210,58 +241,155 @@ def update_dots():
         print_dot(x, y, 2)
 
 
+def edit_dot(n):
+    global num_1, num_2, edit
 
-def print_dot(x, y, num):
+    if edit == 1:
+        data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+        if not data[-1]:
+            data = data[:-1]
+        data = data[1::2]
+
+        enable()
+        text1.delete(0.0, END)
+        for j in range(int(ent5.get()) - 1):
+            text1.insert(END, f'{j+1}: ' + data[j] + '\n')
+        
+        d1 = ent1.get()
+        d2 = ent2.get()
+        ent1.delete(0, END)
+        ent2.delete(0, END)
+        if len(d1) != 0 and len(d2) != 0:
+            try:
+                d1 = float(d1)
+                d2 = float(d2)
+                if abs(d1) >= 10000 or abs(d2) >= 10000:
+                    box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
+                    return
+                text1.insert(END, f'{int(ent5.get())}: ({d1:g}; {d2:g})\n')
+            except:
+                box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
+        else:
+            num_1 -= 1
+            story.append('')
+            story[-1] += '; text1.insert(END, "{}: ""{}" + "\\n")'.format(num_1, data[int(ent5.get()) - 1])
+
+
+        for j in range(int(ent5.get()), len(data)):
+            text1.insert(END, f'{j}: ' + data[j] + '\n')
+        disable()
+
+        scale()
+        update_dots()
+        edit = 0
+        ent5.delete(0, END)
+        return
+
+    if edit == 2:
+        data = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+        if not data[-1]:
+            data = data[:-1]
+        data = data[1::2]
+
+        enable()
+        text2.delete(0.0, END)
+        for j in range(int(ent6.get()) - 1):
+            text2.insert(END, f'{j+1}: ' + data[j] + '\n')
+        
+        d1 = ent3.get()
+        d2 = ent4.get()
+        ent3.delete(0, END)
+        ent4.delete(0, END)
+        if len(d1) != 0 and len(d2) != 0:
+            try:
+                d1 = float(d1)
+                d2 = float(d2)
+                if abs(d1) >= 10000 or abs(d2) >= 10000:
+                    box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
+                    return
+                text2.insert(END, f'{int(ent6.get())}: ({d1:g}; {d2:g})\n')
+            except:
+                box.showinfo('Error', 'Некорректные координаты!\nКоордината должна быть числом < 10000, \nразделителем между целой и дробной частями является точка.')
+        else:
+            num_2 -= 1
+            story.append('')
+            story[-1] += '; text2.insert(END, "{}: ""{}" + "\\n")'.format(num_2, data[int(ent6.get()) - 1])
+
+        for j in range(int(ent6.get()), len(data)):
+            text2.insert(END, f'{j}: ' + data[j] + '\n')
+        disable()
+
+        scale()
+        update_dots()
+        edit = 0
+        ent6.delete(0, END)
+        return
+
+    if n == 1:
+        num = ent5.get()
+        if len(num) == 0:
+            box.showinfo('info', f'Введите номер точки от 1 до {num_1}' if text1.get(1.0, END) != '\n' else 'нет точек для редактирования')
+            return
+        try:
+            num = int(num)
+            if num > num_1:
+                box.showerror('error', 'Такой точки нет')
+                return
+            
+            box.showinfo('info', 'Введите новые координаты точки в поля для координат или оставьте их пустыми для удаления точки и нажмите еще раз эту кнопку')
+            edit = 1
+        except:
+            box.showerror('error', 'Введено не число')
+    else:
+        num = ent6.get()
+        if len(num) == 0:
+            box.showinfo('info', f'Введите номер точки от 1 до {num_2}' if text2.get(1.0, END) != '\n' else 'нет точек для редактирования')
+            return
+        try:
+            num = int(num)
+            if num > num_2:
+                box.showerror('error', 'Такой точки нет')
+                return
+            
+            box.showinfo('info', 'Введите новые координаты точки в поля для координат или оставьте их пустыми для удаления точки и нажмите еще раз эту кнопку')
+            edit = 2
+        except:
+            box.showerror('error', 'Введено не число')
+
+
+def print_dot(x, y, num): # Отрисовка точки
     if num == 2:
         c.create_oval(x - 2, y - 2, x + 2, y + 2, outline='blue', fill='blue', tag='dot', activeoutline='violet', activefill='violet')
     else:
         c.create_oval(x - 2, y - 2, x + 2, y + 2, outline='green', fill='green', tag='dot', activeoutline='violet', activefill='violet')
 
 
-
-def text_and_labels_creation():
-    text1.place(x=20, y=33)
-    scroll = Scrollbar(command=text1.yview)
-    scroll.pack(side=LEFT, fill=Y)
-    text1.config(yscrollcommand=scroll.set)
-
-    text2.place(x=445, y=33)
-    scroll = Scrollbar(command=text2.yview)
-    scroll.pack(side=RIGHT, fill=Y)
-    text2.config(yscrollcommand=scroll.set)
-
-    label1 = Label(text='Точки первого множества:')
-    label2 = Label(text='Точки второго множества:')
-    label1.place(x=20, y=12)
-    label2.place(x=445, y=12)
-
-def clean_oval():
+def clean_oval(): # Удаление всех окружностей
     ovals = c.find_withtag('oval')
     for oval in ovals:
         c.delete(oval)
 
-def clean_points():
+def clean_points(): # Удаление всех точек с поля
     points = c.find_withtag('dot')
     for point in points:
         c.delete(point)
 
-def find_oval():
+def find_oval(): # Решение задачи
     clean_oval()
-    data = text1.get(1.0, END).split('\n')[:-1]
-
+    data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
     if not data[-1]:
         data = data[:-1]
+    data = data[1::2]
 
-    data2 = text2.get(1.0, END).split('\n')[:-1]
-
+    data2 = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
     if not data2[-1]:
         data2 = data2[:-1]
+    data2 = data2[1::2]
 
     points = [[data[i], data[j], data[k]] for i in range(len(data)-2) for j in range(i+1, len(data)-1) for k in range(j+1, len(data))]
 
     r_min = 600
     a1, b1 = 0, 0
-    
     for dot in points:
         x1, y1 = map(float, dot[0].strip('\n').strip(')').strip('(').split(';'))
         x2, y2 = map(float, dot[1].strip('\n').strip(')').strip('(').split(';'))
@@ -270,7 +398,8 @@ def find_oval():
         zx = (y1 - y2) * (x3 * x3 + y3 * y3) + (y2 - y3) * (x1 * x1 + y1 * y1) + (y3 - y1) * (x2 * x2 + y2 * y2)
         zy = (x1 - x2) * (x3 * x3 + y3 * y3) + (x2 - x3) * (x1 * x1 + y1 * y1) + (x3 - x1) * (x2 * x2 + y2 * y2)
         z = (x1 - x2) * (y3 - y1) - (y1 - y2) * (x3 - x1)
-
+        if z == 0:
+            continue
         a = -zx / (2 * z)
         b = zy / (2 * z)
         r = sqrt((x1 - a) * (x1 - a) + (y1 - b) * (y1 - b))
@@ -288,10 +417,16 @@ def find_oval():
             r_min = r
             a1 = x
             b1 = y
-    
+
     if r_min != 600:
         story.append('')
         c.create_oval(a1 - r_min, b1 - r_min, a1 + r_min, b1 + r_min, tag='oval')
+
+        text.configure(state=NORMAL)
+        text.delete(0.0, END)
+        text.insert(1.0, 'Результат:\nцентр - ({:g},{:g})\nрадиус - {:g}'.format(a1, b1, r_min))
+        text.configure(state=DISABLED)
+
         ovals = c.find_withtag('oval')
         for oval in ovals:
             story[-1] += f'c.delete({oval});'
@@ -302,34 +437,72 @@ def find_oval():
             box.showinfo('Error', 'Окружность не найдена')
 
 
-def clean_all():
+def clean_all(): # Очищение всех полей
     clean_points()
     clean_oval()
     enable()
     text1.delete(1.0, END)
     text2.delete(1.0, END)
+    ent1.delete(0, END)
+    ent2.delete(0, END)
+    ent3.delete(0, END)
+    ent4.delete(0, END)
     disable()
+    text.configure(state=NORMAL)
+    text.delete(1.0, END)
+    text.configure(state=DISABLED)
     global story
     story = []
+    global num_1, num_2
+    num_1 = num_2 = 1
 
-def scale(x, y):
-    global sz
+def scale(): # Масштабирование
+    max = 0
+    data = text1.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+    if not data[-1]:
+        data = data[:-1]
+    data = data[1::2]
+
+    for dot in data:
+        x, y = map(float, dot.strip('\n').strip(')').strip('(').split(';'))
+        if abs(x) > max:
+            max = abs(x)
+        if abs(y) > max:
+            max = abs(y)   
+
+    data = text2.get(1.0, END).replace(': ', '\n').split('\n')[:-1]
+    if not data[-1]:
+        data = data[:-1]
+    data = data[1::2]
+
+    for dot in data:
+        x, y = map(float, dot.strip('\n').strip(')').strip('(').split(';'))
+        if abs(x) > max:
+            max = abs(x)
+        if abs(y) > max:
+            max = abs(y)    
+    global sz  
+    if max == 0:
+        sz = 1
+        redraw()
+        return
+
     prev_sz = sz
-    while x > -150 * sz and x < 150 * sz and y > -150 * sz and y < 150 * sz:
+    while max < 150 * sz and 300 * sz < 10000:
         sz /= 2
 
-    while x < -300 * sz or x > 300 * sz or y < -300 * sz or y > 300 * sz:
+    while max > 300 * sz and 300 * sz < 10000:
         sz *= 2
 
     if sz != prev_sz:
         redraw()
 
-def clean_coords():
+def clean_coords(): # Удаление чисел около осей
     coords = c.find_withtag('coord')
     for cor in coords:
         c.delete(cor)
 
-def redraw():
+def redraw(): # Перерисовка чисел у осей при масштабировании
     global sz
     clean_oval()
     clean_coords()
@@ -343,24 +516,51 @@ def redraw():
     update_dots()
 
 
-def buttons_creation():
+
+def coord_true(x, y): # Перевод в координаты относительно экрана
+    return 365 + x / sz, 550 - y / sz
+
+
+def text_and_labels_creation(): # Создание текстовых полей
+    text1.place(x=20, y=33)
+    scroll = Scrollbar(command=text1.yview)
+    scroll.pack(side=LEFT, fill=Y)
+    text1.config(yscrollcommand=scroll.set)
+
+    text2.place(x=445, y=33)
+    scroll = Scrollbar(command=text2.yview)
+    scroll.pack(side=RIGHT, fill=Y)
+    text2.config(yscrollcommand=scroll.set)
+
+    text.place(x=710, y=650)
+
+    label1 = Label(text='Точки первого множества:')
+    label2 = Label(text='Точки второго множества:')
+    label1.place(x=20, y=12)
+    label2.place(x=445, y=12)
+
+    label3 = Label(text='Номер точки \nдля редактирования:')
+    label3.place(x=20, y=208)
+
+
+def buttons_creation(): # Создание кнопок
     btn_add1 = Button(root, text='добавить', fg='green', command=lambda: add_dot(1))
     btn_back = Button(root, text='назад', fg='purple', command=lambda: back())
     btn_add2 = Button(root, text='добавить', fg='blue', command=lambda: add_dot(2))
     btn_oval = Button(root, text='найти Ｏ', fg='purple', command=lambda: find_oval())
     btn_cl_all = Button(root, text='очистить все', fg='purple', command=lambda: clean_all())
+    btn_edit1 = Button(root, text='редакт.', fg='blue', command=lambda: edit_dot(1))
+    btn_edit2 = Button(root, text='редакт.', fg='blue', command=lambda: edit_dot(2))
     btn_add1.place(x=218, y=177)
     btn_add2.place(x=646, y=177)
+    btn_edit1.place(x=218, y=207)
+    btn_edit2.place(x=646, y=207)
     btn_cl_all.place(x=315, y=140)
     btn_back.place(x=315, y=170)
     btn_oval.place(x=315, y=110)
 
 
-def coord_true(x, y):
-    return 365 + x / sz, 550 - y / sz
-
-
-def coordinate_field_creation():
+def coordinate_field_creation(): # Создание осей координат и сетки
     c.create_line(33, 550, 690, 550, fill='black',
                   width=3, arrow=LAST,
                   arrowshape="10 17 6")
@@ -383,12 +583,11 @@ def coordinate_field_creation():
         c.create_line(coord_true(i, -300), coord_true(i, 300), fill='black', width=1, dash=(1, 9))
         c.create_line(coord_true(-i, -300), coord_true(-i, 300), fill='black', width=1, dash=(1, 9))
         
-
     c.create_text(coord_true(320, 15), text='X', font='Verdana 13', fill='black')
     c.create_text(coord_true(15, 340), text='Y', font='Verdana 13', fill='black')
 
 
-def radiobutton_creation():
+def radiobutton_creation(): # Создание переключателя
     var.set(0)
     label3 = Label(text='Ввод точек \nна плоскости:')
     label3.place(x = 315, y = 12)
