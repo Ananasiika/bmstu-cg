@@ -5,9 +5,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
-    bun = create_bun();
-    bun = scale_object(bun, 1, -1, bun.center.cords[0], bun.center.cords[1]);
-    origin_bun = bun;
+    horse = create_horse();
+    horse = scale_object(horse, 1, -1, horse.center.cords[0], horse.center.cords[1]);
+    origin_horse = horse;
     ui->setupUi(this);
     pxp = QPixmap(ui->label->width(), ui->label->height());
     pxp.fill();
@@ -15,9 +15,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(bun, painter);
+    draw_object(horse, painter);
     ui->label->setPixmap(pxp);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
 
 MainWindow::~MainWindow()
@@ -39,39 +39,39 @@ void MainWindow::on_moveButton_clicked()
         return;
     }
 
-    this->stack.push_back(this->bun);
-    this->bun = move_object(this->bun, dx, dy);
+    this->stack.push_back(this->horse);
+    this->horse = move_object(this->horse, dx, dy);
 
     pxp.fill();
     QPainter painter(&pxp);
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(this->bun, painter);
+    draw_object(this->horse, painter);
     ui->label->setPixmap(pxp);
     ui->backButton->setEnabled(true);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
 
 void MainWindow::on_backButton_clicked()
 {
-    this->bun = this->stack[this->stack.size() - 1];
+    this->horse = this->stack[this->stack.size() - 1];
     this->stack.pop_back();
     pxp.fill();
     QPainter painter(&pxp);
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(this->bun, painter);
+    draw_object(this->horse, painter);
     ui->label->setPixmap(pxp);
 
     if (this->stack.size() < 1) ui->backButton->setDisabled(true);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
 
 void MainWindow::on_cancelAllButton_clicked()
 {
-    this->bun = this->origin_bun;
+    this->horse = this->origin_horse;
     this->stack.clear();
     if (this->stack.size() < 1) ui->backButton->setDisabled(true);
 
@@ -80,9 +80,9 @@ void MainWindow::on_cancelAllButton_clicked()
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(this->bun, painter);
+    draw_object(this->horse, painter);
     ui->label->setPixmap(pxp);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
 
 void MainWindow::on_scaleButton_clicked()
@@ -111,18 +111,18 @@ void MainWindow::on_scaleButton_clicked()
         return;
     }
 
-    this->stack.push_back(this->bun);
-    this->bun = scale_object(bun, kx, ky, xc, yc);
+    this->stack.push_back(this->horse);
+    this->horse = scale_object(horse, kx, ky, xc, yc);
 
     pxp.fill();
     QPainter painter(&pxp);
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(this->bun, painter);
+    draw_object(this->horse, painter);
     ui->label->setPixmap(pxp);
     ui->backButton->setEnabled(true);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
 
 void MainWindow::on_rotateButton_clicked()
@@ -146,16 +146,16 @@ void MainWindow::on_rotateButton_clicked()
         return;
     }
 
-    this->stack.push_back(this->bun);
-    this->bun = rotate_object(bun, angle, xc, yc);
+    this->stack.push_back(this->horse);
+    this->horse = rotate_object(horse, angle, xc, yc);
 
     pxp.fill();
     QPainter painter(&pxp);
     QPen pen;
     pen.setWidth(4);
     painter.setPen(pen);
-    draw_object(this->bun, painter);
+    draw_object(this->horse, painter);
     ui->label->setPixmap(pxp);
     ui->backButton->setEnabled(true);
-    ui->centerLabel->setText("Центр ( " + QString::number(bun.center.cords[0], 'd', 0) + "; " + QString::number(bun.center.cords[1], 'd', 0) + ")");
+    ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }

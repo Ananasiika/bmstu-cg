@@ -1,6 +1,6 @@
 #include "matrix_funcs.h"
 
-std::vector<double> mul(std::vector<double> v, std::vector<std::vector<double> > m) {
+std::vector<double> multiplication(std::vector<double> v, std::vector<std::vector<double> > m) {
     std::vector<double> res;
     for (int i = 0; i < v.size(); ++i) {
         double sum = 0;

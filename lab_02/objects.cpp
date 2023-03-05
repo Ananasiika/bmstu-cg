@@ -10,43 +10,43 @@ linear_figure_t create_line(point_t a, point_t b) {
     return res;
 }
 
-object_t create_bun() {
+object_t create_horse() {
     object_t res;
 
-    res.linear_figures.push_back(create_line(point(221, 383), point(261, 365)));
-    res.linear_figures.push_back(create_line(point(221, 383), point(248, 517)));
-    res.linear_figures.push_back(create_line(point(243, 348), point(248, 517)));
-    res.linear_figures.push_back(create_line(point(243, 348), point(340, 303)));
-    res.linear_figures.push_back(create_line(point(256, 343), point(282, 453)));
-    res.linear_figures.push_back(create_line(point(271, 513), point(282, 453)));
-    res.linear_figures.push_back(create_line(point(271, 513), point(295, 527)));
-    res.linear_figures.push_back(create_line(point(308, 606), point(295, 527)));
-    res.linear_figures.push_back(create_line(point(308, 606), point(291, 606)));
-    res.linear_figures.push_back(create_line(point(271, 513), point(291, 606)));
-    res.linear_figures.push_back(create_line(point(345, 425), point(282, 453)));
-    res.linear_figures.push_back(create_line(point(345, 425), point(295, 527)));
-    res.linear_figures.push_back(create_line(point(345, 425), point(371, 314)));
-    res.linear_figures.push_back(create_line(point(345, 425), point(492, 453)));
-    res.linear_figures.push_back(create_line(point(340, 303), point(371, 314)));
-    res.linear_figures.push_back(create_line(point(478, 319), point(371, 314)));
-    res.linear_figures.push_back(create_line(point(478, 319), point(492, 453)));
-    res.linear_figures.push_back(create_line(point(478, 319), point(574, 410)));
-    res.linear_figures.push_back(create_line(point(478, 319), point(561, 257)));
-    res.linear_figures.push_back(create_line(point(511, 515), point(492, 453)));
-    res.linear_figures.push_back(create_line(point(511, 515), point(574, 410)));
-    res.linear_figures.push_back(create_line(point(616, 246), point(561, 257)));
-    res.linear_figures.push_back(create_line(point(616, 246), point(612, 318)));
-    res.linear_figures.push_back(create_line(point(616, 246), point(654, 252)));
-    res.linear_figures.push_back(create_line(point(616, 246), point(657, 228)));
-    res.linear_figures.push_back(create_line(point(654, 252), point(657, 228)));
-    res.linear_figures.push_back(create_line(point(573, 366), point(612, 318)));
-    res.linear_figures.push_back(create_line(point(573, 366), point(574, 410)));
-    res.linear_figures.push_back(create_line(point(690, 342), point(654, 252)));
-    res.linear_figures.push_back(create_line(point(690, 342), point(673, 357)));
-    res.linear_figures.push_back(create_line(point(612, 318), point(673, 357)));
-    res.linear_figures.push_back(create_line(point(511, 515), point(518, 606)));
-    res.linear_figures.push_back(create_line(point(532, 606), point(518, 606)));
-    res.linear_figures.push_back(create_line(point(532, 606), point(544, 464)));
+    res.linear_figures.push_back(create_line(point(121, 383), point(161, 365)));
+    res.linear_figures.push_back(create_line(point(121, 383), point(148, 517)));
+    res.linear_figures.push_back(create_line(point(143, 348), point(148, 517)));
+    res.linear_figures.push_back(create_line(point(143, 348), point(240, 303)));
+    res.linear_figures.push_back(create_line(point(156, 343), point(182, 453)));
+    res.linear_figures.push_back(create_line(point(171, 513), point(182, 453)));
+    res.linear_figures.push_back(create_line(point(171, 513), point(195, 527)));
+    res.linear_figures.push_back(create_line(point(208, 606), point(195, 527)));
+    res.linear_figures.push_back(create_line(point(208, 606), point(191, 606)));
+    res.linear_figures.push_back(create_line(point(171, 513), point(191, 606)));
+    res.linear_figures.push_back(create_line(point(245, 425), point(182, 453)));
+    res.linear_figures.push_back(create_line(point(245, 425), point(195, 527)));
+    res.linear_figures.push_back(create_line(point(245, 425), point(271, 314)));
+    res.linear_figures.push_back(create_line(point(245, 425), point(392, 453)));
+    res.linear_figures.push_back(create_line(point(240, 303), point(271, 314)));
+    res.linear_figures.push_back(create_line(point(378, 319), point(271, 314)));
+    res.linear_figures.push_back(create_line(point(378, 319), point(392, 453)));
+    res.linear_figures.push_back(create_line(point(378, 319), point(474, 410)));
+    res.linear_figures.push_back(create_line(point(378, 319), point(461, 257)));
+    res.linear_figures.push_back(create_line(point(411, 515), point(392, 453)));
+    res.linear_figures.push_back(create_line(point(411, 515), point(474, 410)));
+    res.linear_figures.push_back(create_line(point(516, 246), point(461, 257)));
+    res.linear_figures.push_back(create_line(point(516, 246), point(512, 318)));
+    res.linear_figures.push_back(create_line(point(516, 246), point(554, 252)));
+    res.linear_figures.push_back(create_line(point(516, 246), point(557, 228)));
+    res.linear_figures.push_back(create_line(point(554, 252), point(557, 228)));
+    res.linear_figures.push_back(create_line(point(473, 366), point(512, 318)));
+    res.linear_figures.push_back(create_line(point(473, 366), point(474, 410)));
+    res.linear_figures.push_back(create_line(point(590, 342), point(554, 252)));
+    res.linear_figures.push_back(create_line(point(590, 342), point(573, 357)));
+    res.linear_figures.push_back(create_line(point(512, 318), point(573, 357)));
+    res.linear_figures.push_back(create_line(point(411, 515), point(418, 606)));
+    res.linear_figures.push_back(create_line(point(432, 606), point(418, 606)));
+    res.linear_figures.push_back(create_line(point(432, 606), point(444, 464)));
 
     res.center = point(350, 350);
 
@@ -61,32 +61,14 @@ void draw_edge(edge_t e, QPainter &painter)
 
 void draw_linear(linear_figure_t f, QPainter &painter)
 {
-    for (uint i = 0; i < f.edges.size(); ++i) {
+    for (uint i = 0; i < f.edges.size(); ++i)
         draw_edge(f.edges[i], painter);
-    }
-}
-
-void draw_points(point_figure_t f, QPainter &painter)
-{
-    for (uint i = 0; i < f.points.size(); ++i) {
-        draw_point(f.points[i], painter);
-    }
 }
 
 void draw_object(object_t o, QPainter &painter)
 {
-    for (uint i = 0; i < o.linear_figures.size(); ++i) {
+    for (uint i = 0; i < o.linear_figures.size(); ++i)
         draw_linear(o.linear_figures[i], painter);
-    }
-
-    for (uint i = 0; i < o.point_figures.size(); ++i) {
-        draw_points(o.point_figures[i], painter);
-    }
-}
-
-void draw_point(point_t p, QPainter &painter)
-{
-    painter.drawPoint(p.cords[0], p.cords[1]);
 }
 
 point_t move_point(point_t p, double dx, double dy)
@@ -95,7 +77,7 @@ point_t move_point(point_t p, double dx, double dy)
     matrix.push_back(std::vector<double>{1, 0, 0});
     matrix.push_back(std::vector<double>{0, 1, 0});
     matrix.push_back(std::vector<double>{dx, dy, 1});
-    return point_t{mul(p.cords, matrix)};
+    return point_t{multiplication(p.cords, matrix)};
 }
 
 edge_t move_edge(edge_t e, double dx, double dy)
@@ -106,31 +88,18 @@ edge_t move_edge(edge_t e, double dx, double dy)
 linear_figure_t move_linear(linear_figure_t f, double dx, double dy)
 {
     linear_figure_t res;
-    for (uint i = 0; i < f.edges.size(); ++i) {
+
+    for (uint i = 0; i < f.edges.size(); ++i)
         res.edges.push_back(move_edge(f.edges[i], dx, dy));
-    }
+
     return res;
 }
-
-point_figure_t move_points(point_figure_t f, double dx, double dy)
-{
-    point_figure_t res;
-    for (uint i = 0; i < f.points.size(); ++i) {
-        res.points.push_back(move_point(f.points[i], dx, dy));
-    }
-    return res;
-}
-
 object_t move_object(object_t o, double dx, double dy)
 {
     object_t res;
-    for (uint i = 0; i < o.linear_figures.size(); ++i) {
-        res.linear_figures.push_back(move_linear(o.linear_figures[i], dx, dy));
-    }
 
-    for (uint i = 0; i < o.point_figures.size(); ++i) {
-        res.point_figures.push_back(move_points(o.point_figures[i], dx, dy));
-    }
+    for (uint i = 0; i < o.linear_figures.size(); ++i)
+        res.linear_figures.push_back(move_linear(o.linear_figures[i], dx, dy));
 
     res.center = move_point(o.center, dx, dy);
     return res;
@@ -142,13 +111,12 @@ point_t scale_point_c(point_t p, double kx, double ky)
     matrix.push_back(std::vector<double>{kx, 0, 0});
     matrix.push_back(std::vector<double>{0, ky, 0});
     matrix.push_back(std::vector<double>{0, 0, 1});
-    return point_t{mul(p.cords, matrix)};
+    return point_t{multiplication(p.cords, matrix)};
 }
 
 point_t scale_point(point_t p, double kx, double ky, double xc, double yc)
 {
     return move_point(scale_point_c(move_point(p, -xc, -yc), kx, ky), xc, yc);
-
 }
 
 edge_t scale_edge(edge_t e, double kx, double ky, double xc, double yc)
@@ -162,31 +130,17 @@ edge_t scale_edge(edge_t e, double kx, double ky, double xc, double yc)
 linear_figure_t scale_linear(linear_figure_t f, double kx, double ky, double xc, double yc)
 {
     linear_figure_t res;
-    for (int i = 0; i < f.edges.size(); ++i) {
+    for (int i = 0; i < f.edges.size(); ++i)
         res.edges.push_back(scale_edge(f.edges[i], kx, ky, xc, yc));
-    }
-    return res;
-}
 
-point_figure_t scale_points(point_figure_t f, double kx, double ky, double xc, double yc)
-{
-    point_figure_t res;
-    for (int i = 0; i < f.points.size(); ++i) {
-        res.points.push_back(scale_point(f.points[i], kx, ky, xc, yc));
-    }
     return res;
 }
 
 object_t scale_object(object_t o, double kx, double ky, double xc, double yc)
 {
     object_t res;
-    for (uint i = 0; i < o.linear_figures.size(); ++i) {
+    for (uint i = 0; i < o.linear_figures.size(); ++i)
         res.linear_figures.push_back(scale_linear(o.linear_figures[i], kx, ky, xc, yc));
-    }
-
-    for (uint i = 0; i < o.point_figures.size(); ++i) {
-        res.point_figures.push_back(scale_points(o.point_figures[i], kx, ky, xc, yc));
-    }
 
     res.center = scale_point(o.center, kx, ky, xc, yc);
     return res;
@@ -198,7 +152,7 @@ point_t rotate_point_c(point_t p, double angle)
     matrix.push_back(std::vector<double>{cos(angle), -sin(angle), 0});
     matrix.push_back(std::vector<double>{sin(angle), cos(angle), 0});
     matrix.push_back(std::vector<double>{0, 0, 1});
-    return point_t{mul(p.cords, matrix)};
+    return point_t{multiplication(p.cords, matrix)};
 }
 
 point_t rotate_point(point_t p, double angle, double xc, double yc)
@@ -217,18 +171,9 @@ edge_t rotate_edge(edge_t e, double angle, double xc, double yc)
 linear_figure_t rotate_linear(linear_figure_t f, double angle, double xc, double yc)
 {
     linear_figure_t res;
-    for (int i = 0; i < f.edges.size(); ++i) {
+    for (int i = 0; i < f.edges.size(); ++i)
         res.edges.push_back(rotate_edge(f.edges[i], angle, xc, yc));
-    }
-    return res;
-}
 
-point_figure_t rotate_points(point_figure_t f, double angle, double xc, double yc)
-{
-    point_figure_t res;
-    for (int i = 0; i < f.points.size(); ++i) {
-        res.points.push_back(rotate_point(f.points[i], angle, xc, yc));
-    }
     return res;
 }
 
@@ -237,10 +182,6 @@ object_t rotate_object(object_t o, double angle, double xc, double yc)
     object_t res;
     for (uint i = 0; i < o.linear_figures.size(); ++i) {
         res.linear_figures.push_back(rotate_linear(o.linear_figures[i], angle, xc, yc));
-    }
-
-    for (uint i = 0; i < o.point_figures.size(); ++i) {
-        res.point_figures.push_back(rotate_points(o.point_figures[i], angle, xc, yc));
     }
 
     res.center = rotate_point(o.center, angle, xc, yc);

@@ -34,8 +34,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
     QPixmap pxp;
-    object_t bun;
-    object_t origin_bun;
+    object_t horse;
+    object_t origin_horse;
     std::vector<object_t> stack;
 };
 
