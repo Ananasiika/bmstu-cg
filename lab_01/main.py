@@ -541,9 +541,9 @@ def text_and_labels_creation(): # Создание текстовых полей
 
 
 def buttons_creation(): # Создание кнопок
-    btn_add1.place(x=int(wx * 218), y=int(wy * 168))
+    btn_add1.place(x=int(wx * 222), y=int(wy * 168))
     btn_add2.place(x=int(wx * 646), y=int(wy * 168))
-    btn_edit1.place(x=int(wx * 218), y=int(wy * 207))
+    btn_edit1.place(x=int(wx * 222), y=int(wy * 207))
     btn_edit2.place(x=int(wx * 646), y=int(wy * 207))
     btn_cl_all.place(x=int(wx * 315), y=int(wy * 140))
     btn_back.place(x=int(wx * 315), y=int(wy * 170))
@@ -602,7 +602,7 @@ def redraw_window():
     ent2.place(x=int(wx * 132), y=int(wy * 172))
     ent3.place(x=int(wx * 460), y=int(wy * 172))
     ent4.place(x=int(wx * 560), y=int(wy * 172))
-    ent5.place(x=int(wx * 170), y=int(wy * 215))
+    ent5.place(x=int(wx * 178), y=int(wy * 215))
     ent6.place(x=int(wx * 600), y=int(wy * 215))
 
     text_and_labels_creation()
