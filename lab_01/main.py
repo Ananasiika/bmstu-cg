@@ -331,7 +331,7 @@ def edit_dot(n): # редактирование точки в списке
             return
         try:
             num = int(num)
-            if num > num_1:
+            if num >= num_1:
                 box.showerror('error', 'Такой точки нет')
                 return
             
@@ -346,7 +346,7 @@ def edit_dot(n): # редактирование точки в списке
             return
         try:
             num = int(num)
-            if num > num_2:
+            if num >= num_2:
                 box.showerror('error', 'Такой точки нет')
                 return
             
