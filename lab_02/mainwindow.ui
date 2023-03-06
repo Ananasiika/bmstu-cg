@@ -14,361 +14,214 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
-    <property name="geometry">
-     <rect>
-      <x>32</x>
-      <y>24</y>
-      <width>801</width>
-      <height>631</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>TextLabel</string>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="dxEdit">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>90</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="dyEdit">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>90</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="moveButton">
-    <property name="geometry">
-     <rect>
-      <x>848</x>
-      <y>140</y>
-      <width>271</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Переместить</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="dxLabel">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>60</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>DX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="dyLabel">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>60</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>DY</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="kyLabel">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>200</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>KY</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="kxEdit">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>230</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="kyEdit">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>230</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="scaleButton">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>350</y>
-      <width>271</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Масштабировать</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="kxLabel">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>200</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>KX</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="xcScaleEdit">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>310</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="ycScaleEdit">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>310</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="xcScaleLabel">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>280</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>XC</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="ycScaleLabel">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>280</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>YC</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="xcRotEdit">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>520</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="ycRotEdit">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>520</y>
-      <width>113</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="rotateButton">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>560</y>
-      <width>271</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Повернуть</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="ycRotLabel">
-    <property name="geometry">
-     <rect>
-      <x>1000</x>
-      <y>490</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>YC</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLineEdit" name="angleEdit">
-    <property name="geometry">
-     <rect>
-      <x>852</x>
-      <y>440</y>
-      <width>261</width>
-      <height>33</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QLabel" name="xcRotLabel">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>490</y>
-      <width>103</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>XC</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QLabel" name="angleLabel">
-    <property name="geometry">
-     <rect>
-      <x>860</x>
-      <y>410</y>
-      <width>231</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="layoutDirection">
-     <enum>Qt::LeftToRight</enum>
-    </property>
-    <property name="text">
-     <string>Угол(градусы)</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="backButton">
-    <property name="enabled">
-     <bool>false</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>1020</x>
-      <y>630</y>
-      <width>101</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Назад</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="cancelAllButton">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>630</y>
-      <width>171</width>
-      <height>33</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Отменить все</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="centerLabel">
-    <property name="geometry">
-     <rect>
-      <x>850</x>
-      <y>10</y>
-      <width>301</width>
-      <height>25</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>Центр</string>
-    </property>
-   </widget>
+   <layout class="QHBoxLayout" name="horizontalLayout">
+    <item>
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>700</width>
+        <height>700</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QGridLayout" name="gridLayout">
+      <item row="0" column="0" colspan="3">
+       <widget class="QLabel" name="centerLabel">
+        <property name="text">
+         <string>Центр</string>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="0">
+       <widget class="QLabel" name="dxLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>DX</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="1" column="1" colspan="2">
+       <widget class="QLabel" name="dyLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>DY</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="2" column="0">
+       <widget class="QLineEdit" name="dxEdit"/>
+      </item>
+      <item row="2" column="1" colspan="2">
+       <widget class="QLineEdit" name="dyEdit"/>
+      </item>
+      <item row="3" column="0" colspan="3">
+       <widget class="QPushButton" name="moveButton">
+        <property name="text">
+         <string>Переместить</string>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="0">
+       <widget class="QLabel" name="kxLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>KX</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="4" column="1" colspan="2">
+       <widget class="QLabel" name="kyLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>KY</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="5" column="0">
+       <widget class="QLineEdit" name="kxEdit"/>
+      </item>
+      <item row="5" column="1" colspan="2">
+       <widget class="QLineEdit" name="kyEdit"/>
+      </item>
+      <item row="6" column="0">
+       <widget class="QLabel" name="xcScaleLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>XC</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="6" column="1" colspan="2">
+       <widget class="QLabel" name="ycScaleLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>YC</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="7" column="0">
+       <widget class="QLineEdit" name="xcScaleEdit"/>
+      </item>
+      <item row="7" column="1" colspan="2">
+       <widget class="QLineEdit" name="ycScaleEdit"/>
+      </item>
+      <item row="8" column="0" colspan="3">
+       <widget class="QPushButton" name="scaleButton">
+        <property name="text">
+         <string>Масштабировать</string>
+        </property>
+       </widget>
+      </item>
+      <item row="9" column="0" colspan="3">
+       <widget class="QLabel" name="angleLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Угол(градусы)</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="10" column="0" colspan="3">
+       <widget class="QLineEdit" name="angleEdit"/>
+      </item>
+      <item row="11" column="0">
+       <widget class="QLabel" name="xcRotLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>XC</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="11" column="1" colspan="2">
+       <widget class="QLabel" name="ycRotLabel">
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>YC</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item row="12" column="0">
+       <widget class="QLineEdit" name="xcRotEdit"/>
+      </item>
+      <item row="12" column="1" colspan="2">
+       <widget class="QLineEdit" name="ycRotEdit"/>
+      </item>
+      <item row="13" column="0" colspan="3">
+       <widget class="QPushButton" name="rotateButton">
+        <property name="text">
+         <string>Повернуть</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="0" colspan="2">
+       <widget class="QPushButton" name="cancelAllButton">
+        <property name="text">
+         <string>Отменить все</string>
+        </property>
+       </widget>
+      </item>
+      <item row="14" column="2">
+       <widget class="QPushButton" name="backButton">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string>Назад</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -376,7 +229,7 @@
      <x>0</x>
      <y>0</y>
      <width>1157</width>
-     <height>30</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

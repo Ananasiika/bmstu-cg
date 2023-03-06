@@ -6,9 +6,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     horse = create_horse();
+    horse = move_object(horse, (x - 700) / 2, (y - 700) / 2);
+    horse.center.cords[0] = x / 2;
+    horse.center.cords[1] = y / 2;
     horse = scale_object(horse, 1, -1, horse.center.cords[0], horse.center.cords[1]);
     origin_horse = horse;
     ui->setupUi(this);
+    ui->label->setFixedSize(x, y);
     pxp = QPixmap(ui->label->width(), ui->label->height());
     pxp.fill();
     QPainter painter(&pxp);
@@ -159,3 +163,5 @@ void MainWindow::on_rotateButton_clicked()
     ui->backButton->setEnabled(true);
     ui->centerLabel->setText("Центр лошади ( " + QString::number(horse.center.cords[0], 'd', 0) + "; " + QString::number(horse.center.cords[1], 'd', 0) + ")");
 }
+
+

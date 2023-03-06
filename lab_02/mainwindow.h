@@ -37,6 +37,7 @@ private:
     object_t horse;
     object_t origin_horse;
     std::vector<object_t> stack;
+    int x = 700, y = 700;
 };
 
 #endif // MAINWINDOW_H
