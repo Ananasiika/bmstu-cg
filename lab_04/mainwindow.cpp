@@ -40,7 +40,8 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->lineEdit_figure_r2->setDisabled(true);
     ui->lineEdit_spectrum_dr2->setDisabled(true);
-    ui->lineEdit_spectrum_r2->setDisabled(true);
+    ui->lineEdit_spectrum_r2_1->setDisabled(true);
+    ui->lineEdit_2_spectrum_r2_2->setDisabled(true);
 
     data.back_color = Qt::white;
     show_color(data.back_color, ui->label_bc);
@@ -226,13 +227,15 @@ void MainWindow::on_comboBox_figure_activated(int index)
     {
         ui->lineEdit_figure_r2->setDisabled(false);
         ui->lineEdit_spectrum_dr2->setDisabled(false);
-        ui->lineEdit_spectrum_r2->setDisabled(false);
+        ui->lineEdit_spectrum_r2_1->setDisabled(false);
+        ui->lineEdit_2_spectrum_r2_2->setDisabled(false);
     }
     else
     {
         ui->lineEdit_figure_r2->setDisabled(true);
         ui->lineEdit_spectrum_dr2->setDisabled(true);
-        ui->lineEdit_spectrum_r2->setDisabled(true);
+        ui->lineEdit_spectrum_r2_1->setDisabled(true);
+        ui->lineEdit_2_spectrum_r2_2->setDisabled(true);
     }
 
 }
@@ -296,8 +299,10 @@ void MainWindow::on_pushButton_spectrum_clicked()
 {
     QString str_x = ui->lineEdit_spectrum_x->text();
     QString str_y = ui->lineEdit_spectrum_y->text();
-    QString str_r1 = ui->lineEdit_spectrum_r1->text();
-    QString str_r2 = ui->lineEdit_spectrum_r2->text();
+    QString str_r1_1 = ui->lineEdit_spectrum_r1_1->text();
+    QString str_r1_2 = ui->lineEdit_spectrum_r1_2->text();
+    QString str_r2_1 = ui->lineEdit_spectrum_r2_1->text();
+    QString str_r2_2 = ui->lineEdit_2_spectrum_r2_2->text();
     QString str_dr1 = ui->lineEdit_spectrum_dr1->text();
     QString str_dr2 = ui->lineEdit_spectrum_dr2->text();
     QString str_n = ui->lineEdit_spectrum_n->text();
@@ -305,22 +310,25 @@ void MainWindow::on_pushButton_spectrum_clicked()
 
     figure_type_t type = (figure_type_t) ui->comboBox_figure->currentIndex();
 
-    if (!str_x.length() || !str_y.length() || !str_n.length() || !str_r1.length() || !str_dr1.length() || (type == ELLIPSE && (!str_r2.length() || !str_dr2.length())))
+    if (!str_x.length() || !str_y.length())
         error_message("Ошибка ввода: неполный или пустой ввод");
     else
     {
-        bool flag_x, flag_y, flag_r1, flag_r2, flag_dr1, flag_dr2, flag_n;
-        int x, y, r1, r2, dr1, dr2;
+        bool flag_x, flag_y, flag_r1_1, flag_r1_2, flag_r2_1, flag_r2_2, flag_dr1, flag_dr2, flag_n;
+        int x, y, r1_1, r1_2, r2_1, r2_2, dr1, dr2;
         int n;
         x = str_x.toInt(&flag_x);
         y = str_y.toInt(&flag_y);
-        r1 = str_r1.toInt(&flag_r1);
-        r2 = str_r2.toInt(&flag_r2);
+        r1_1 = str_r1_1.toInt(&flag_r1_1);
+        r1_2 = str_r1_2.toInt(&flag_r1_2);
+        r2_1 = str_r2_1.toInt(&flag_r2_1);
+        r2_2 = str_r2_2.toInt(&flag_r2_2);
         dr1 = str_dr1.toInt(&flag_dr1);
         dr2 = str_dr2.toInt(&flag_dr2);
         n = str_n.toInt(&flag_n);
 
-        if (!flag_x || !flag_y || !flag_n || !flag_dr1 || !flag_r1 || (type == ELLIPSE && (!flag_r2 || !flag_dr2)))
+        if (!flag_x || !flag_y || (bool(flag_dr1) + bool(flag_n) + bool(flag_r1_1) + bool(flag_r1_2)) < 3 || \
+                (type == ELLIPSE && (bool(flag_dr2) + bool(flag_n) + bool(flag_r2_1) + bool(flag_r2_2)) < 3))
             error_message("Ошибка ввода: некорректный ввод");
         else
         {
@@ -336,11 +344,16 @@ void MainWindow::on_pushButton_spectrum_clicked()
             spectrum.color = line_color;
             spectrum.dra = dr1;
             spectrum.n = n;
-            spectrum.ra = r1;
+            if (flag_r1_1)
+                spectrum.ra = r1_1;
+            else
+                spectrum.ra = 0;
+            spectrum.rae = r1_2;
             if (type == ELLIPSE)
             {
                 spectrum.drb = dr2;
-                spectrum.rb = r2;
+                spectrum.rb = r2_1;
+                spectrum.rbe = r2_2;
             }
             data.spectrums.push_back(spectrum);
             data.back_color = back_color;
@@ -362,8 +375,8 @@ void MainWindow::on_pushButton_time_clicked()
 {
     QString str_x = ui->lineEdit_spectrum_x->text();
     QString str_y = ui->lineEdit_spectrum_y->text();
-    QString str_r1 = ui->lineEdit_spectrum_r1->text();
-    QString str_r2 = ui->lineEdit_spectrum_r2->text();
+    QString str_r1 = ui->lineEdit_spectrum_r1_1->text();
+    QString str_r2 = ui->lineEdit_spectrum_r2_1->text();
     QString str_dr1 = ui->lineEdit_spectrum_dr1->text();
     QString str_dr2 = ui->lineEdit_spectrum_dr2->text();
     QString str_n = ui->lineEdit_spectrum_n->text();

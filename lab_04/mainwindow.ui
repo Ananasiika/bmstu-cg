@@ -802,7 +802,7 @@
          <property name="minimumSize">
           <size>
            <width>0</width>
-           <height>180</height>
+           <height>200</height>
           </size>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_8">
@@ -882,6 +882,12 @@
             </item>
             <item>
              <widget class="QGroupBox" name="verticalGroupBox_3">
+              <property name="minimumSize">
+               <size>
+                <width>0</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="maximumSize">
                <size>
                 <width>16777215</width>
@@ -892,7 +898,7 @@
                <item>
                 <widget class="QLabel" name="label_19">
                  <property name="text">
-                  <string>R1</string>
+                  <string>a</string>
                  </property>
                 </widget>
                </item>
@@ -907,12 +913,12 @@
                     </size>
                    </property>
                    <property name="text">
-                    <string>R1</string>
+                    <string>a1</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_spectrum_r1"/>
+                  <widget class="QLineEdit" name="lineEdit_spectrum_r1_1"/>
                  </item>
                 </layout>
                </item>
@@ -921,12 +927,32 @@
                  <item>
                   <widget class="QLabel" name="label_17">
                    <property name="text">
-                    <string>ΔR1</string>
+                    <string>Δa</string>
                    </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QLineEdit" name="lineEdit_spectrum_dr1"/>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_3">
+                 <item>
+                  <widget class="QLabel" name="label_21">
+                   <property name="minimumSize">
+                    <size>
+                     <width>20</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>a2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_spectrum_r1_2"/>
                  </item>
                 </layout>
                </item>
@@ -939,7 +965,7 @@
                <item>
                 <widget class="QLabel" name="label_12">
                  <property name="text">
-                  <string>R2</string>
+                  <string>b</string>
                  </property>
                 </widget>
                </item>
@@ -947,13 +973,19 @@
                 <layout class="QHBoxLayout" name="horizontalLayout_12">
                  <item>
                   <widget class="QLabel" name="label_15">
+                   <property name="minimumSize">
+                    <size>
+                     <width>20</width>
+                     <height>0</height>
+                    </size>
+                   </property>
                    <property name="text">
-                    <string>R2</string>
+                    <string>b1</string>
                    </property>
                   </widget>
                  </item>
                  <item>
-                  <widget class="QLineEdit" name="lineEdit_spectrum_r2"/>
+                  <widget class="QLineEdit" name="lineEdit_spectrum_r2_1"/>
                  </item>
                 </layout>
                </item>
@@ -962,12 +994,32 @@
                  <item>
                   <widget class="QLabel" name="label_18">
                    <property name="text">
-                    <string>ΔR2</string>
+                    <string>Δb</string>
                    </property>
                   </widget>
                  </item>
                  <item>
                   <widget class="QLineEdit" name="lineEdit_spectrum_dr2"/>
+                 </item>
+                </layout>
+               </item>
+               <item>
+                <layout class="QHBoxLayout" name="horizontalLayout_8">
+                 <item>
+                  <widget class="QLabel" name="label_22">
+                   <property name="minimumSize">
+                    <size>
+                     <width>20</width>
+                     <height>0</height>
+                    </size>
+                   </property>
+                   <property name="text">
+                    <string>b2</string>
+                   </property>
+                  </widget>
+                 </item>
+                 <item>
+                  <widget class="QLineEdit" name="lineEdit_2_spectrum_r2_2"/>
                  </item>
                 </layout>
                </item>

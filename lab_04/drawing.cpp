@@ -96,11 +96,18 @@ void drawing_spectrum_circle(canvas_t &scene, const spectrum_t &spectrum)
     circle.center = spectrum.center;
     circle.color = spectrum.color;
     circle.method = spectrum.method;
-    for (int i = 0; i < spectrum.n; i++)
-    {
-        circle.ra = spectrum.ra + i * spectrum.dra;
-        drawing_circle(scene, circle, true);
-    }
+    if (spectrum.n && circle.ra && spectrum.dra)
+        for (int i = 0; i < spectrum.n; i++)
+        {
+            circle.ra = spectrum.ra + i * spectrum.dra;
+            drawing_circle(scene, circle, true);
+        }
+    else if (spectrum.ra && spectrum.dra && spectrum.rae)
+        for (int i = 0; i <= (spectrum.rae - spectrum.ra) / spectrum.dra; i++)
+        {
+            circle.ra = spectrum.ra + i * spectrum.dra;
+            drawing_circle(scene, circle, true);
+        }
 }
 
 void drawing_spectrum_ellispe(canvas_t &scene, const spectrum_t &spectrum)
@@ -109,12 +116,20 @@ void drawing_spectrum_ellispe(canvas_t &scene, const spectrum_t &spectrum)
     ellispe.center = spectrum.center;
     ellispe.color = spectrum.color;
     ellispe.method = spectrum.method;
-    for (int i = 0; i < spectrum.n; i++)
-    {
-        ellispe.ra = spectrum.ra + i * spectrum.dra;
-        ellispe.rb = spectrum.rb + i * spectrum.drb;
-        drawing_ellipse(scene, ellispe, true);
-    }
+    if (spectrum.n)
+        for (int i = 0; i < spectrum.n; i++)
+        {
+            ellispe.ra = spectrum.ra + i * spectrum.dra;
+            ellispe.rb = spectrum.rb + i * spectrum.drb;
+            drawing_ellipse(scene, ellispe, true);
+        }
+    else
+        for (int i = 0; i <= (spectrum.rae - spectrum.ra) / spectrum.dra && i <= (spectrum.rbe - spectrum.rb) / spectrum.drb; i++)
+        {
+            ellispe.ra = spectrum.ra + i * spectrum.dra;
+            ellispe.rb = spectrum.rb + i * spectrum.drb;
+            drawing_ellipse(scene, ellispe, true);
+        }
 }
 
 void draw_pix(canvas_t &scene, const double &x, const double &y, const QColor &color)

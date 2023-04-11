@@ -43,6 +43,8 @@ struct spectrum_t
     double rb;
     double dra;
     double drb;
+    double rae;
+    double rbe;
     int n;
     method_t method;
     QColor color;

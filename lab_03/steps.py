@@ -1,4 +1,3 @@
-import matplotlib
 import matplotlib.pyplot as plt
 from itertools import count, takewhile
 def frange(start, stop, step):
