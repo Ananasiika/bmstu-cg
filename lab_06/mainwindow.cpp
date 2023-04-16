@@ -290,7 +290,7 @@ void MainWindow::on_pushButton_clear_clicked()
     scene->clear();
 
     line_color = Qt::black;
-    fill_color = QColor("#ffa257");
+    fill_color = Qt::cyan;
     show_color(line_color, ui->label_lc);
     show_color(fill_color, ui->label_fc);
     data.back_color = back_color;
