@@ -2,7 +2,6 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 from tkinter import colorchooser
-from math import sqrt
 
 lineColor = '#79b4f6'
 cutterColor = '#de74a4'
