@@ -102,7 +102,7 @@ class App():
         self.ent_xlt.bind('<Button-1>', self.entry_mode_xlt)
         self.ent_ylt.bind('<Button-1>', self.entry_mode_ylt)
 
-        self.lab_line = Label(self.frame, justify='center', text='ОТРЕЗОК', foreground='gray', font='"Segoe UI Variable" 10')
+        self.lab_line = Label(self.frame, justify='center', text='МНОГОУГОЛЬНИК', foreground='gray', font='"Segoe UI Variable" 10')
         self.lab_line.place(rely=0.43, relwidth=1)
 
         self.ent_xb = ttk.Entry(self.frame, justify=CENTER, foreground='gray')
@@ -174,7 +174,6 @@ class App():
 
     def clean(self):
         self.canv.delete('all')
-        self.sections.clear()
         self.verteces_list.clear()
         self.figure_list.clear()
     
