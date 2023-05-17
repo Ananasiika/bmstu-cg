@@ -216,7 +216,7 @@ def solve():
         canvas.create_line(p1[0], p1[1], p2[0], p2[1], fill=color)
         
 
-
+ 
 
 root = tk.Tk()
 root.title("Лабораторная работа №10")
