@@ -19,7 +19,7 @@ class App():
         style.configure('blue.TButton', background='#0000ff')
 
         self.root.geometry('1000x700+250+50')
-        self.root.title('Лабораторная работа №8')
+        self.root.title('Лабораторная работа №9')
         self.root.minsize(900, 630)
         self.root.grab_set()
         self.root.focus_get()
