@@ -1,7 +1,9 @@
+from tkinter import *
 import tkinter as tk
 from math import pi, cos, sin
 from tkinter import colorchooser
 from tkinter import ttk
+from tkinter import messagebox
 from numpy import arange
 from math import sin, cos, pi
 from functions import funcs
@@ -214,15 +216,28 @@ def solve():
         p1 = trans_point([x_to, f(x_to, z), z])
         p2 = trans_point([x_to, f(x_to, z + z_step), z + z_step])
         canvas.create_line(p1[0], p1[1], p2[0], p2[1], fill=color)
-        
 
+def prog_info():
+    messagebox.showinfo(title='О программе', message='Алгоритм плавающего горизонта.\n')
+    
+def author_info():
+    messagebox.showinfo(title='Об авторе', message='Пронина Лариса ИУ7-44Б')
  
 
 root = tk.Tk()
 root.title("Лабораторная работа №10")
 root["bg"] = MAIN_COLOUR
 root.minsize(1100, 800)
-root.geometry('1300x800+250+50')
+root.geometry('1380x800+250+50')
+menubar = Menu(root)
+actionmenu = Menu(menubar, tearoff='off')
+actionmenu.add_command(label='Выход', command=root.destroy)
+menubar.add_cascade(label='Действия', menu=actionmenu)
+infomenu = Menu(menubar, tearoff='off')
+infomenu.add_command(label='О программе', command=prog_info)
+infomenu.add_command(label='Об авторе', command=author_info)
+menubar.add_cascade(label='Информация', menu=infomenu)
+root.config(menu=menubar)
 
 style = ttk.Style(root)
 style.configure('default.TButton', font='"Segoe UI Variable" 12')
@@ -436,7 +451,7 @@ canvas_frame = tk.Frame(root, bg="white")
 canvas = tk.Canvas(canvas_frame, bg="white")
 root.bind("<Return>", lambda x: solve())
 
-canvas_frame.place(x=3 * BORDERS_WIDTH + DATA_WIDTH, y=BORDERS_HEIGHT,
+canvas_frame.place(x=2 * BORDERS_WIDTH + DATA_WIDTH, y=BORDERS_HEIGHT,
                    width=FIELD_WIDTH, height=FIELD_HEIGHT)
 
 canvas.place(x=0, y=0, width=FIELD_WIDTH, height=FIELD_HEIGHT)
